@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Scheduling Algorithms</title>
+        <h1>
+         <font size = "12" color = "#4B0082">
+        <center>SORTEST JOB FIRST & SORTEST REMAINING TIME FIRST ALGORITHMS<center>
+        </font>
+        </h1>
+         <img src = "example.jpg"/>
+    </head>
+
+    <body background = "4.jpg">
+        <h1>
+         <font size = "10" color = "#FF1493">
+        <center>SORTEST JOB FIRST<center>
+        </font>
+        </h1>
+        <p><i><font size = "5" face = "Times New Roman" color = "#FF4500">Shortest Job First (SJF) is an optimal scheduling algorithm as it gives maximum Throughput and minimum average waiting time(WT) and turn around time (TAT) but it is not practically implementable because Burst-Time of a process can’t be predicted in advance.
+<br/>
+We may not know the length of the next CPU burst, but we may be able to predict its value. We expect the next CPU burst will be similar in length to the previous ones. By computing an approximation of the length of the next CPU burst, we can pick the process with the shortest predicted CPU burst.
+</p>
+</font>
+<br/>
+<br/>
+<h2>WORKING STRATEGY - </h2>
+<p><font size = "5" face = "Times New Roman" color = " 	#0000CD">
+    Non-preemptive - once CPU given to the process it cannot be preempted until completes its CPU burst.<br/>Ready queue is treated as a priority queue based on smallest CPU time requirement.<br/>Priorities are assigned in inverse order of time needed for completion of the entire job.<br/>If equal time of completion, then FCFS is used for assigning priority. <br/>Arriving jobs inserted at proper position in queue.<br/>Dispatcher selects shortest job (1st in queue) and runs to completion.<br/>Gives minimum average waiting time for a given set of processes.<br/>Minimizes average turnaround time.<br/>When multiple batch jobs are sitting in a queue with the same priority, the scheduler runs the shortest job first.<br/>It cannot be implemented at the level of short term CPU scheduling.<br/>A job exceeding the resource estimation is aborted.<br/>Store estimated value in PCB for the current burst, and compare with actual value. <br/>Exponential averaging is used to estimate the process’ burst duration.<br/>
+</p>
+</font>
+<br/><br/>
+<h2>ADVANTAGES - </h2>
+<p><font size = "5" face = "Times New Roman" color = " 	#0000CD">
+Minimizes average waiting time.<br/>
+Provably optimal w.r.t. average turnaround time.<br/>
+Throughput is high.<br/>
+</P>
+</font>
+<br/><br/>
+<h2>DISADVANTAGES - </h2>
+<p><font size = "5" face = "Times New Roman" color = " 	#0000CD">
+In general, cannot be implemented.<br/> Requires future knowledge.<br/>In practice, can’t actually predict the length of next burst.<br/>Can lead to unfairness or starvation<br/>It may penalize processes with high service time requests. If the ready list is saturated, then processes with large service times tend to be left in the ready list while small processes receive service.<br/> In extreme case, where the system has little idle time, processes with large service times will never be served. This total starvation of large processes may be a serious liability of this algorithm.<br/>Doesn’t always minimize average turnaround time<br/>Elapsed time (i.e., execution-completed-time) must be recorded, it results an additional overhead on the processor. <br/>
+</i></P>
+</font>
+<br/><br/>
+
+
+<h2>EXAMPLE - </h2>
+<img src = "sjf.jpg"/>
+<br/>
+<br/>
+<h1>
+         <font size = "10" color = "#FF1493">
+        <center>SORTEST REMAINING TIME FIRST<center>
+        </font>
+        </h1>
+        <p><i><font size = "5" face = "Times New Roman" color = "#FF4500">Shortest remaining time, also known as shortest remaining time first (SRTF), is a scheduling method that is a preemptive version of shortest job next scheduling. In this scheduling algorithm, the process with the smallest amount of time remaining until completion is selected to execute. Since the currently executing process is the one with the shortest amount of time remaining by definition, and since that time should only reduce as execution progresses, processes will always run until they complete or a new process is added that requires a smaller amount of time
+</p>
+</font>
+<br/>
+<br/>
+<h2>WORKING STRATEGY - </h2>
+<p><font size = "5" face = "Times New Roman" color = " 	#0000CD">
+    Preemptive - once high priority process comes in the queue CPU given to the process  preempted and high priority process in scheduled in the CPU.<br/>Ready queue is treated as a priority queue based on smallest CPU time requirement.<br/>Priorities are assigned in inverse order of time needed for completion of the entire job.<br/>If equal time of completion, then FCFS is used for assigning priority. <br/>Arriving jobs inserted at proper position in queue.<br/>Dispatcher selects shortest job (1st in queue) and runs to completion.<br/>Gives minimum average waiting time for a given set of processes.<br/>Minimizes average turnaround time.<br/>When multiple batch jobs are sitting in a queue with the same priority, the scheduler runs the shortest job first.<br/>It cannot be implemented at the level of short term CPU scheduling.<br/>A job exceeding the resource estimation is aborted.<br/>Store estimated value in PCB for the current burst, and compare with actual value. <br/>Exponential averaging is used to estimate the process’ burst duration.<br/>
+</p>
+</font>
+<br/><br/>
+<h2>ADVANTAGES - </h2>
+<p><font size = "5" face = "Times New Roman" color = " 	#0000CD">
+Shortest remaining time is advantageous because short processes are handled very quickly. The system also requires very little overhead since it only makes a decision when a process completes or a new process is added, and when a new process is added the algorithm only needs to compare the currently executing process with the new process, ignoring all other processes currently waiting to execute.
+
+Like shortest job first, it has the potential for process starvation; long processes may be held off indefinitely if short processes are continually added. This threat can be minimal when process times follow a heavy-tailed distribution.[1] A similar algorithm which avoids starvation at the cost of higher tracking overhead is Highest response ratio next.<br/>
+</P>
+</font>
+<br/><br/>
+<h2>DISADVANTAGES - </h2>
+<p><font size = "5" face = "Times New Roman" color = " 	#0000CD">
+Like shortest job next scheduling, shortest remaining time scheduling is rarely used outside of specialized environments because it requires accurate estimates of the runtime of each process. <br/>
+</i></P>
+</font>
+<br/><br/>
+
+<img src = "srtf.jpg"/>
+
+<h3> 
+<font size = "10" color = "#FF4500">
+ENTER THE NO OF PROCESS AND SELECT ALGORITHM
+</font></h3>
+<form action="table.php" method="post">
+<font size = "6" color = "#4B0082">
+            Processes:
+            <input type="number"  min = "1" name="process" value = "2" ><br>
+            Algorithm:
+            <select name="algo">
+                
+                <option value="sjf">Shortest Job First (NP)</option>
+                <option value="srtf">Shortest Remaining Time First (P)</option>
+                
+           </select><br>
+
+            <input type="submit">
+</font>
+        </form>
+    </body>
+</html>
